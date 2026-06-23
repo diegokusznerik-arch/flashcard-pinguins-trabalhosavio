@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards sobre Pinguins</title>
+    <style>
+        /* Configurações Globais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        /* Container dos Flashcards */
+        .flashcard-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        /* Estrutura 3D do Card */
+        .flashcard {
+            background-color: transparent;
+            width: 300px;
+            height: 200px;
+            perspective: 1000px; /* Efeito de profundidade 3D */
+            cursor: pointer;
+        }
+
+        /* Elemento interno que gira */
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        /* Classe acionada pelo clique para girar o card */
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Frente e Verso do Card */
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Esconde o lado oposto na rotação */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            box-sizing: border-box;
+            border-radius: 12px;
+        }
+
+        /* Estilo da Frente (Afirmação) */
+        .flashcard-front {
+            background-color: #ffffff;
+            color: #2c3e50;
+            border: 2px solid #3498db;
+        }
+
+        .flashcard-front h3 {
+            font-size: 0.9rem;
+            color: #3498db;
+            text-transform: uppercase;
+            margin: 0 0 12px 0;
+            letter-spacing: 1px;
+        }
+
+        /* Estilo do Verso (Resposta) */
+        .flashcard-back {
+            color: white;
+            transform: rotateY(180deg); /* Começa invertido */
+        }
+
+        /* Cores customizadas para o verso com base no resultado */
+        .bg-errado {
+            background-color: #e74c3c; /* Vermelho para o Errado */
+        }
+
+        .bg-correto {
+            background-color: #2ecc71; /* Verde para o Correto */
+        }
+
+        .flashcard-back h3 {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            margin: 0 0 12px 0;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fatos sobre Pinguins 🐧</h1>
+
+    <div class="flashcard-container">
+        
+        <!-- Card 1 -->
+        <div class="flashcard" onclick="flipCard(this)">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <h3>Afirmação</h3>
+                    <p>Pinguins são peixes</p>
+                </div>
+                <div class="flashcard-back bg-errado">
+                    <h3>Resposta</h3>
+                    <p>Errado! Pinguins são aves.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flashcard" onclick="flipCard(this)">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <h3>Afirmação</h3>
+                    <p>Pinguins botam ovos</p>
+                </div>
+                <div class="flashcard-back bg-correto">
+                    <h3>Resposta</h3>
+                    <p>Correto! Eles são ovíparos.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Função que vira o cartão ao clicar
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+    </script>
+
+</body>
+</html>
